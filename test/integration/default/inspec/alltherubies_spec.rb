@@ -2,12 +2,11 @@ def nokogiri_install_cmd(ruby_dir)
   "#{ruby_dir}/bin/gem install nokogiri --no-ri --no-rdoc"
 end
 
-def nokogiri_ssl_cmd(ruby_dir)
-  %{ #{ruby_dir}/bin/ruby -rrubygems -ropen-uri -rnokogiri \\
-  -e "puts Nokogiri::HTML(open('https://google.com')).css('input')" }
+def ssl_cmd(ruby_dir)
+  %{ #{ruby_dir}/bin/ruby -rnet/http -e "Net::HTTP.get(URI('https://letsencrypt.org/'))" }
 end
 
-%w[2.2.6 2.3.3 2.4.0 jruby-9.1.7.0].each do |rubie|
+%w(2.4.2 jruby-9.1.13.0).each do |rubie|
   ruby_dir = File.join('/usr/local/ruby', rubie)
 
   describe directory(ruby_dir) do
@@ -18,7 +17,7 @@ end
     its('exit_status') { should eq 0 }
   end
 
-  describe command(nokogiri_ssl_cmd(ruby_dir)) do
+  describe command(ssl_cmd(ruby_dir)) do
     its('exit_status') { should eq 0 }
   end
 end
