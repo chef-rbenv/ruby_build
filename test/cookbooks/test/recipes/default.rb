@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+if %w(debian ubuntu).include? node['platform']
+  include_recipe 'apt'
+end
+
 include_recipe 'java'
 include_recipe 'ruby_build'
 
