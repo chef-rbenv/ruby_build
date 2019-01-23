@@ -13,6 +13,16 @@ workflows:
           name: lint
       - kitchen/dokken-single:
           suite: default
+          name: Amazon Linux
+          platform: amazonlinux
+          requires: [lint, danger]
+      - kitchen/dokken-single:
+          suite: default
+          name: Amazon Linux 2
+          platform: amazonlinux-2
+          requires: [lint, danger]
+      - kitchen/dokken-single:
+          suite: default
           name: CentOS 6
           platform: centos-6
           requires: [lint, danger]

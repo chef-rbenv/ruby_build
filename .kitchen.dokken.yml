@@ -10,19 +10,25 @@ provisioner:
   deprecations_as_errors: true
 
 platforms:
+- name: amazonlinux
+  driver:
+    image: dokken/centos-6
+    pid_one_command: /sbin/init
+
+- name: amazonlinux-2
+  driver:
+    image: dokken/amazonlinux-2
+    pid_one_command: /usr/lib/systemd/systemd
+
 - name: centos-6
   driver:
     image: dokken/centos-6
     pid_one_command: /sbin/init
-    intermediate_instructions:
-      - RUN yum -y install sudo
 
 - name: centos-7
   driver:
     image: dokken/centos-7
     pid_one_command: /usr/lib/systemd/systemd
-    intermediate_instructions:
-      - RUN yum -y install sudo
 
 - name: debian-8
   driver:
@@ -30,7 +36,6 @@ platforms:
     pid_one_command: /sbin/init
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
-       - RUN /usr/bin/apt-get install sudo -y
 
 - name: debian-9
   driver:
@@ -38,7 +43,6 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
-       - RUN /usr/bin/apt-get install sudo -y
 
 - name: ubuntu-16.04
   driver:
@@ -46,7 +50,6 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
-       - RUN /usr/bin/apt-get install sudo -y
 
 - name: ubuntu-18.04
   driver:
@@ -54,4 +57,3 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
        - RUN /usr/bin/apt-get update
-       - RUN /usr/bin/apt-get install sudo -y
