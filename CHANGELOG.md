@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of the ruby_build cookbook.
 
+## Unreleased
+
+- Remove recipes
+- Add ruby_build_install resource
+  It is now possible to specify `jruby_deps` and have jruby dependencies installed.
+- Add ruby_build_definition resource
+- Add unit testing
+
 ## 1.2.0 (2019-23-01)
 
 - Convert to a custom resource
