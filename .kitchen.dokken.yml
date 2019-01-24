@@ -7,12 +7,16 @@ transport:
 
 provisioner:
   name: dokken
-  deprecations_as_errors: true
+  product_name: chef
+  enforce_idempotency: true
+  multiple_converge: 2
+  solo_rb:
+    treat_deprecation_warnings_as_errors: true
 
 platforms:
 - name: amazonlinux
   driver:
-    image: dokken/centos-6
+    image: dokken/amazonlinux
     pid_one_command: /sbin/init
 
 - name: amazonlinux-2
